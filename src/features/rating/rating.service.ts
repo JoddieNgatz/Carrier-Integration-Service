@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { RATING_STRATEGIES, RatingStrategy } from './strategy/rating.strategy';
-import { RatingRequest } from '../../carriers/ups/rating/interfaces/rating-request.interface';
-import { RatingResponse } from '../../carriers/ups/rating/interfaces/rating-response.interface';
+import { RatingRequest } from './interfaces/rating-request.interface';
+import { RatingResponse } from './interfaces/rating-response.interface';
 
 @Injectable()
 export class RatingService {
@@ -17,10 +17,11 @@ export class RatingService {
   //Defaulting to using ups rating for now
   async postRating(
     request: RatingRequest,
-    carrier = 'UPS',
+    carrier = 'ups',
   ): Promise<RatingResponse> {
     const strategy = this.strategies.find(
-      ({ carrier: strategyCarrier }) => strategyCarrier === carrier,
+      ({ carrier: strategyCarrier }) =>
+        strategyCarrier.toLowerCase() === carrier,
     );
 
     if (!strategy) {

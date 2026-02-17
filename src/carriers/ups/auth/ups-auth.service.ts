@@ -1,17 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpService } from '@nestjs/axios';
-
-interface UpsOauthResponse {
-  access_token: string;
-  token_type: string;
-  expires_in: string | number;
-}
-
-interface CachedToken {
-  accessToken: string;
-  expiresAt: number;
-}
+import {
+  CachedToken,
+  UpsOauthResponse,
+} from './interfaces/ups-auth-interfaces';
 
 @Injectable()
 export class UpsAuthService {

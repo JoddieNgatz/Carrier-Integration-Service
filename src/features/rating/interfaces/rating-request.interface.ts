@@ -1,4 +1,5 @@
-import { DimensionUnit, WeightUnit } from './rating-request.types';
+export type WeightUnit = 'kg' | 'lb';
+export type DimensionUnit = 'cm' | 'in';
 
 export interface Address {
   name?: string;
@@ -26,10 +27,8 @@ export interface Package {
 
 export interface RatingRequest {
   carrier: string;
-}
-export interface UpsRatingRequest extends RatingRequest {
   origin: Address;
   destination: Address;
   packages: Package[];
-  serviceLevel?: 'ground' | 'express' | 'overnight' | string;
+  serviceLevel?: string;
 }
