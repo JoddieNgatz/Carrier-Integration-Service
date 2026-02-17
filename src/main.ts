@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { RatingModule } from './features/rate/rating.module';
+import { AppModule } from './app.module';
 
 import { json } from 'body-parser';
 import { urlencoded } from 'body-parser';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(RatingModule);
+  const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('Carrier API')

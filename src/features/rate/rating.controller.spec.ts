@@ -16,7 +16,7 @@ describe('RatingController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(ratingController.getHello()).toBe('Hello World!');
+      expect(ratingController.postRating()).toBe('Hello World!');
     });
   });
 });

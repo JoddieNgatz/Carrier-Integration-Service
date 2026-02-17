@@ -13,11 +13,11 @@ describe('UpsAuthService', () => {
     overrides: Record<string, string | undefined> = {},
   ) => {
     const values: Record<string, string | undefined> = {
-      UPS_OAUTH_URL: 'https://wwwcie.ups.com/security/v1/oauth/token',
-      UPS_CLIENT_ID: 'client-id',
-      UPS_CLIENT_SECRET: 'client-secret',
-      UPS_MERCHANT_ID: '123456',
-      UPS_TIMEOUT_MS: '5000',
+      UPS_OAUTH_URL: process.env.UPS_OAUTH_URL,
+      UPS_CLIENT_ID: process.env.UPS_CLIENT_ID,
+      UPS_CLIENT_SECRET: process.env.UPS_CLIENT_SECRET,
+      UPS_MERCHANT_ID: process.env.UPS_MERCHANT_ID,
+      UPS_TIMEOUT_MS: process.env.UPS_TIMEOUT_MS,
       ...overrides,
     };
 
@@ -77,7 +77,7 @@ describe('UpsAuthService', () => {
     expect(httpService.axiosRef.request).toHaveBeenCalledWith(
       expect.objectContaining({
         method: 'POST',
-        url: 'https://wwwcie.ups.com/security/v1/oauth/token',
+        url: process.env.UPS_OAUTH_URL,
         data: 'grant_type=client_credentials',
         timeout: 5000,
         headers: expect.objectContaining({
